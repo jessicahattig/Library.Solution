@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace Library.Controllers
 {
-    public class AccountController : Controller
+    public class AuthorsController : Controller
     {
 
     }
