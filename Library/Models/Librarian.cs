@@ -4,7 +4,8 @@ namespace Library.Models
 {
   public class Librarian
   {
-    
+    public int LibrarianId { get; set; }
+
   }
 }
 
