@@ -7,6 +7,8 @@ namespace Library.Models
     public int CopyId { get; set; }
     public int BookId { get; set; }
     public Book Book { get; set; }
+    public List<Checkout> JoinEntities { get; }
+
 
   }
 }
