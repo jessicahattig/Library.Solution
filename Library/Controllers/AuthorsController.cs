@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Library.Models;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Library.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Library.Controllers
 {
@@ -24,7 +27,7 @@ namespace Library.Controllers
         string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);List<Author> userAuthors = _db.Authors
                         .Where(entry => entry.User.Id == currentUser.Id)
-                        .Include(author => author.Book)
+                        .Include(author => author.Books)
                         .ToList();
         return View(userAuthors);
     }
@@ -57,9 +60,9 @@ namespace Library.Controllers
     public ActionResult Details(int id)
     {
         Author thisAuthor = _db.Authors
-        .Include(author => author.Book)
-        .Include(author => author.JoinEntities)
-        // .ThenInclude(join => join.Tag)
+        .Include(author => author.Books)
+        // .Include(author => author.JoinEntities)
+        // // .ThenInclude(join => join.Tag)
         .FirstOrDefault(author => author.AuthorId == id);
         return View(thisAuthor);
     }

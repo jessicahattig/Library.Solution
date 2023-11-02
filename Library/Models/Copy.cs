@@ -9,6 +9,8 @@ namespace Library.Models
     public Book Book { get; set; }
     public List<Checkout> JoinEntities { get; }
 
+    public ApplicationUser User { get; set; }  
+
 
   }
 }
